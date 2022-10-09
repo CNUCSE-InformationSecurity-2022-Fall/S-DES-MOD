@@ -192,7 +192,8 @@ if result_decrypt != bits_plaintext:
 else:
     print(f"S-DES-ECB SUCCESS!!!")
 
-random_iv = bitarray(bin(random.getrandbits(8)).replace('0b', ''))
+# now IV will be always 8 bits
+random_iv = bitarray(bin(random.getrandbits(7) + (1 << 8)).replace('0b', ''))
 print(f"IV will be random...{random_iv}")
 
 result_encrypt = sdes_encrypt_cbc(bits_plaintext, bits_key, random_iv)
